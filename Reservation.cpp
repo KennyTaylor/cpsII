@@ -10,5 +10,4 @@ public:
     {
         this->name = name;
     }
-}
-cout << "TEST TEST TEST TEST";
+} cout << "test 2" << endl;
