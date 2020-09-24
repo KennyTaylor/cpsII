@@ -27,5 +27,5 @@ void Reservation::remove()
 //todo: what should a reservation print? NAME has a reservation in NAME CAR for NUM credits
 string Reservation::print() const
 {
-    return "print is not implemented";
+    return this->name + "has a reservation in " + this->carName + " " + this->carType + ", cost " + to_string(this->credits) + " credits";
 }
