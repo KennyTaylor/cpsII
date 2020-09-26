@@ -13,7 +13,32 @@ int main()
     string name, type, color;
     int seat, reservationID;
     char selection;
-
+    // From today
+    int i = 0;
+    int count = 0;
+    string names_array[18];
+    string points_array[18];
+    fstream file;
+    string word, filename;
+    int points_left;
+    filename = "quidditch_team.dat";
+    file.open(filename.c_str());
+    file.seek
+    while (getline(filename, word)) {
+        if (count >= 6) {
+            int space_char;
+            string points, cut_name;
+            names_array[i] = word;
+            space_char = word.find_last_of(" ");
+            cut_name = word.substr(0, space_char);
+            points = word.substr(space_char);
+            names_array[i] = cut_name;
+            points_array[i] = points;
+            i += 1;
+        }
+        count += 1;
+    }
+    // End From today
     bool quit = false;
     while (!quit)
     {
@@ -32,16 +57,11 @@ int main()
             cin >> seat;
             cout << "reservation created for " << name << " in " << type << ", cost " << seat << " credits" << endl;
             // From today
-            fstream file;
-            string word, filename;
-
-            filename = "quidditch_team.dat";
-            file.open(filename.c_str());
-            while (file >> word)
-            {
-                if (word == name) {
-                    C.Reservation(name, type, seat); // I'm not that fimiliar with "case" so I don't know if I need to add the "C." there, if not, just delete it.
-                }
+            if (word == name) {
+                Reservation Reservation1(name, type, seat); 
+            }
+            else {
+                cout << "Name not found." << endl;
             }
             // End of From today
             break;
