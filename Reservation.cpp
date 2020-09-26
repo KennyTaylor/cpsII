@@ -14,6 +14,12 @@ Reservation::Reservation(string name, string carType, string carName)
     this->carType = carType;
     this->name = name;
 }
+Reservation::Reservation(string name, string type, int credits)
+{
+    this->credits = credits;
+    this->carType = type;
+    this->name = name;
+}
 
 void Reservation::modify(string newCarType, string newCarName)
 {
@@ -24,7 +30,7 @@ void Reservation::remove()
 {
     this->modify("Vehicle", "Blank");
 }
-//todo: Looks fine to me. If it's not exactly what he wants, we can talk to him on Wednesday, but for now, I think it's fine. 
+//todo: Looks fine to me. If it's not exactly what he wants, we can talk to him on Wednesday, but for now, I think it's fine.
 string Reservation::print() const
 {
     return this->name + "has a reservation in " + this->carName + " " + this->carType + ", cost " + to_string(this->credits) + " credits";

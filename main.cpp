@@ -23,9 +23,13 @@ int main()
     int points_left;
     filename = "quidditch_team.dat";
     file.open(filename.c_str());
-    file.seek
-    while (getline(filename, word)) {
-        if (count >= 6) {
+    // file.seek
+
+    // read player names and points from the file once, keep them in memory
+    while (getline(file, word))
+    {
+        if (count >= 6)
+        {
             int space_char;
             string points, cut_name;
             names_array[i] = word;
@@ -35,11 +39,13 @@ int main()
             names_array[i] = cut_name;
             points_array[i] = points;
             i += 1;
+            cout << cut_name << endl;
         }
         count += 1;
     }
     // End From today
     bool quit = false;
+    bool foundFlag;
     while (!quit)
     {
         cout << "menu" << endl; // display all the user's options
@@ -56,19 +62,35 @@ int main()
             cout << "enter seat by cost: ";
             cin >> seat;
             cout << "reservation created for " << name << " in " << type << ", cost " << seat << " credits" << endl;
-            // From today
-            if (word == name) {
-                Reservation Reservation1(name, type, seat); 
+
+            // make sure they don't already have a reservation, then push their reservation
+            // TODO: also make sure they have enough points for the reservation they are making
+            foundFlag = false;
+            for (int i = 0; i < reservations.size(); i++)
+            {
+                if (foundFlag)
+                {
+                    break;
+                }
+                if (reservations.at(i).getName() == name)
+                {
+                    cout << "You already have a reservation. Choose modify to change it." << endl;
+                    foundFlag = true;
+                }
             }
-            else {
-                cout << "Name not found." << endl;
+            // if they don't already have one, add them
+            if (!foundFlag)
+            {
+                cout << "creating your reservation" << endl;
+                reservations.push_back(Reservation(string(name), string(type), int(seat)));
             }
-            // End of From today
-            break;
+
+            break; // end of create reservation
         case 'm':
         case 'M':
             // modify a reservation
-            break;
+            cout << "modify not implemented. will reuse most of create for it " << endl;
+            break; // end of modify reservation
         case 'd':
         case 'D':
             // delete a reservation
@@ -81,7 +103,7 @@ int main()
             }
             reservations[reservationID].remove();
             cout << "reservation " << reservationID << " was deleted" << endl;
-            break;
+            break; // end of delete reservation
         case 'p':
         case 'P':
             // print the reservations
@@ -90,6 +112,10 @@ int main()
                 cout << reservations[i].print() << endl;
             }
             break;
+        case 'q':
+        case 'Q':
+            cout << "quitting";
+            quit = true;
         default:
             cout << "enter a valid option" << endl;
             break;

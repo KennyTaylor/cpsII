@@ -12,6 +12,8 @@ private:
 public:
     Reservation();
     Reservation(string name, string carType, string carName);
+    Reservation(string name, string type, int credits);
+
     string getName()
     {
         return this->name;
