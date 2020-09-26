@@ -13,6 +13,7 @@ int main()
     string name, type, color;
     int seat, reservationID;
     char selection;
+
     bool quit = false;
     while (!quit)
     {
@@ -30,6 +31,19 @@ int main()
             cout << "enter seat by cost: ";
             cin >> seat;
             cout << "reservation created for " << name << " in " << type << ", cost " << seat << " credits" << endl;
+            // From today
+            fstream file;
+            string word, filename;
+
+            filename = "quidditch_team.dat";
+            file.open(filename.c_str());
+            while (file >> word)
+            {
+                if (word == name) {
+                    C.Reservation(name, type, seat); // I'm not that fimiliar with "case" so I don't know if I need to add the "C." there, if not, just delete it.
+                }
+            }
+            // End of From today
             break;
         case 'm':
         case 'M':
