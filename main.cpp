@@ -39,7 +39,7 @@ int main()
             names_array[i] = cut_name;
             points_array[i] = points;
             i += 1;
-            cout << cut_name << endl;
+            // cout << cut_name << endl; // didnt mean to commit this test print whoops
         }
         count += 1;
     }
