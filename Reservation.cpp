@@ -26,10 +26,10 @@ void Reservation::modify(string newCarType, string newCarName)
     this->carName = newCarName;
     this->carType = newCarType;
 }
-void Reservation::remove()
-{
-    this->modify("Vehicle", "Blank");
-}
+// void Reservation::remove()
+// {
+//     this->modify("Vehicle", "Blank");
+// }
 //todo: Looks fine to me. If it's not exactly what he wants, we can talk to him on Wednesday, but for now, I think it's fine.
 string Reservation::print() const
 {

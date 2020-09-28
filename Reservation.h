@@ -27,6 +27,6 @@ public:
         return this->carName;
     }
     void modify(string newCarType, string newCarName);
-    void remove();
+    // void remove();
     string print() const;
 };

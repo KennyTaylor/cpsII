@@ -39,7 +39,11 @@ int main()
             names_array[i] = cut_name;
             points_array[i] = points;
             i += 1;
-            // cout << cut_name << endl; // didnt mean to commit this test print whoops
+            cout << cut_name << " " << points << endl; // didnt mean to commit this test print whoops
+        }
+        else
+        {
+            // do anything special with the drivers?
         }
         count += 1;
     }
@@ -90,6 +94,7 @@ int main()
         case 'M':
             // modify a reservation
             cout << "modify not implemented. will reuse most of create for it " << endl;
+
             break; // end of modify reservation
         case 'd':
         case 'D':
@@ -101,7 +106,11 @@ int main()
                 cout << "enter a valid ID between 0 and 17: ";
                 cin >> reservationID;
             }
-            reservations[reservationID].remove();
+            // reservations[reservationID].remove();
+            reservations.erase(reservations.begin() + reservationID);
+            // I switched the 'database' to a vector, so we can add and remove entries
+            // by adding/removing from the list; going to get rid of Reservation::remove() since it kind of isn't needed now
+
             cout << "reservation " << reservationID << " was deleted" << endl;
             break; // end of delete reservation
         case 'p':
