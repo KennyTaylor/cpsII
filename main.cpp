@@ -1,5 +1,6 @@
 #include "Reservation.h"
 #include "Vehicle.h"
+#include "Pickup.h"
 #include <vector>
 using namespace std;
 
@@ -7,6 +8,8 @@ int main()
 {
     Reservation testRes("test player", "pickup", "red");
     cout << testRes.getName() << " has a reservation in a " << testRes.getCarName() << " " << testRes.getCarType() << endl;
+
+    Pickup car2 = Pickup("name", "type"); // idk what name and type are, just need to be something to distinguish the cars.
 
     Vehicle car1 = Vehicle();
     cout << car1.print() << endl;
