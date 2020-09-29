@@ -92,7 +92,9 @@ int main()
                 cout << "Error, invalid name" << endl;
                 break; // break the switch statement
             }
-            // TODO: question: vector<Vehicle> can have elements of type pickup? how best to store vehicles?
+            // TODO: question for wednesday: vector<Vehicle> can have elements of type pickup? how best to store vehicles?
+
+            // TODO: make the menu being printed here match the spec, making use of vehicle.print()
             cout << "enter car type: ";
             cin >> type;
             cout << "enter seat by cost: ";
@@ -100,7 +102,7 @@ int main()
             cout << "reservation created for " << name << " in " << type << ", cost " << seat << " credits" << endl;
 
             // make sure they don't already have a reservation, then push their reservation
-            // TODO: also make sure they have enough points for the reservation they are making
+            //  also make sure they have enough points for the reservation they are making
             foundFlag = false;
             for (int i = 0; i < reservations.size(); i++)
             {
