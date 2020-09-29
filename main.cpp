@@ -1,23 +1,24 @@
 #include "Reservation.h"
+#include "Vehicle.h"
 #include <vector>
 using namespace std;
 
 int main()
 {
-    Reservation testRes("test player", "pickup", "red"); // Create an object of MyClass
-
+    Reservation testRes("test player", "pickup", "red");
     cout << testRes.getName() << " has a reservation in a " << testRes.getCarName() << " " << testRes.getCarType() << endl;
 
+    Vehicle car1 = Vehicle();
+    cout << car1.print() << endl;
     vector<Reservation> reservations = {testRes};
 
-    string name, type, color;
+    string name, lastname, type, color;
     int seat, reservationID;
     char selection;
-    // From today
     int i = 0;
     int count = 0;
-    string names_array[18];
-    string points_array[18];
+    vector<string> names_db, drivers;
+    vector<string> points_db;
     fstream file;
     string word, filename;
     int points_left;
@@ -32,24 +33,25 @@ int main()
         {
             int space_char;
             string points, cut_name;
-            names_array[i] = word;
             space_char = word.find_last_of(" ");
             cut_name = word.substr(0, space_char);
             points = word.substr(space_char);
-            names_array[i] = cut_name;
-            points_array[i] = points;
+            names_db.push_back(cut_name);
+            points_db.push_back(points);
+            cout << names_db.at(i) << " " << points_db.at(i) << endl;
+
             i += 1;
-            cout << cut_name << " " << points << endl; // didnt mean to commit this test print whoops
         }
         else
         {
+            drivers.push_back(word);
             // do anything special with the drivers?
         }
         count += 1;
     }
     // End From today
     bool quit = false;
-    bool foundFlag;
+    bool foundFlag, noCredits;
     while (!quit)
     {
         cout << "menu" << endl; // display all the user's options
@@ -59,8 +61,38 @@ int main()
         case 'c':
         case 'C':
             // create a reservation
-            cout << "enter name: ";
-            cin >> name;
+            getline(cin, name); // flush cin or something
+            cout << "enter name: " << endl;
+            getline(cin, name);
+            // cin >> name;
+            // cin >> lastname;
+            foundFlag = false;
+            noCredits = false;
+            for (int i = 0; i < names_db.size(); i++)
+            {
+                // cout << name << names_db.at(i) << endl; // debug print
+                if (names_db.at(i) == name)
+                {
+                    cout << name << " has " << points_db.at(i) << " credits remaining." << endl;
+                    if (points_db.at(i) == "0")
+                    {
+                        noCredits = true;
+                    }
+                    foundFlag = true;
+                    break; // break the for loop, since we found the name
+                }
+            }
+            if (noCredits)
+            {
+                cout << "Error: you have no credits" << endl;
+                break;
+            }
+            if (!foundFlag)
+            {
+                cout << "Error, invalid name" << endl;
+                break; // break the switch statement
+            }
+            // TODO: question: vector<Vehicle> can have elements of type pickup? how best to store vehicles?
             cout << "enter car type: ";
             cin >> type;
             cout << "enter seat by cost: ";
@@ -106,10 +138,7 @@ int main()
                 cout << "enter a valid ID between 0 and 17: ";
                 cin >> reservationID;
             }
-            // reservations[reservationID].remove();
             reservations.erase(reservations.begin() + reservationID);
-            // I switched the 'database' to a vector, so we can add and remove entries
-            // by adding/removing from the list; going to get rid of Reservation::remove() since it kind of isn't needed now
 
             cout << "reservation " << reservationID << " was deleted" << endl;
             break; // end of delete reservation
