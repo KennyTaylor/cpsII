@@ -2,8 +2,8 @@
 
 Vehicle::Vehicle()
 {
-    this->name = "default_name";
-    this->type = "default_type";
+    this->name = "name's";
+    this->type = "vehicle";
 }
 Vehicle::Vehicle(string name, string type)
 {
@@ -34,5 +34,5 @@ string Vehicle::print() const
             temp += "\n";
         }
     }
-    return this->type + " " + this->name + "\n" + temp;
+    return this->name + " " + this->type + "\n" + temp;
 }

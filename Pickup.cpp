@@ -3,14 +3,14 @@
 
 Pickup::Pickup()
 {
-    this->seatCosts = {"5"};
-    this->name = "car_name";
-    this->type = "pickup";
+    this->seatCosts = {"-", "5"};
+    this->name = "pickup";
+    this->type = "owner's";
 }
 
 Pickup::Pickup(string name, string type)
 {
-    this->seatCosts = {"5"};
+    this->seatCosts = {"-", "5"};
     this->name = name;
     this->type = type;
 }

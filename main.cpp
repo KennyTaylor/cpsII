@@ -1,18 +1,19 @@
 #include "Reservation.h"
-#include "Vehicle.h"
+// #include "Vehicle.h"
 #include "Pickup.h"
 #include <vector>
 using namespace std;
+int deleteReservation(int &reservationID, vector<Reservation> &reservations); // forward declaration of helper function, can go in helpers.h
 
 int main()
 {
     Reservation testRes("test player", "pickup", "red");
     cout << testRes.getName() << " has a reservation in a " << testRes.getCarName() << " " << testRes.getCarType() << endl;
 
-    Pickup car2 = Pickup("name", "type"); // idk what name and type are, just need to be something to distinguish the cars.
+    Pickup car2 = Pickup("Rob's", "pickup"); // idk what name and type are, just need to be something to distinguish the cars.
 
     Vehicle car1 = Vehicle();
-    cout << car1.print() << endl;
+    // cout << car1.print() << endl;
     vector<Reservation> reservations = {testRes};
 
     string name, lastname, type, color;
@@ -38,7 +39,7 @@ int main()
             string points, cut_name;
             space_char = word.find_last_of(" ");
             cut_name = word.substr(0, space_char);
-            points = word.substr(space_char);
+            points = word.substr(space_char + 1);
             names_db.push_back(cut_name);
             points_db.push_back(points);
             cout << names_db.at(i) << " " << points_db.at(i) << endl;
@@ -54,6 +55,7 @@ int main()
     }
     // End From today
     bool quit = false;
+    int playerIndex, tempPts;
     bool foundFlag, noCredits;
     while (!quit)
     {
@@ -81,6 +83,7 @@ int main()
                     {
                         noCredits = true;
                     }
+                    playerIndex = i;
                     foundFlag = true;
                     break; // break the for loop, since we found the name
                 }
@@ -96,13 +99,10 @@ int main()
                 break; // break the switch statement
             }
             // TODO: question for wednesday: vector<Vehicle> can have elements of type pickup? how best to store vehicles?
-
+            cout << car1.print() << endl
+                 << car2.print();
             // TODO: make the menu being printed here match the spec, making use of vehicle.print()
-            cout << "enter car type: ";
-            cin >> type;
-            cout << "enter seat by cost: ";
-            cin >> seat;
-            cout << "reservation created for " << name << " in " << type << ", cost " << seat << " credits" << endl;
+            // TODO: two different ways of specifying which seat
 
             // make sure they don't already have a reservation, then push their reservation
             //  also make sure they have enough points for the reservation they are making
@@ -119,13 +119,35 @@ int main()
                     foundFlag = true;
                 }
             }
-            // if they don't already have one, add them
-            if (!foundFlag)
-            {
-                cout << "creating your reservation" << endl;
-                reservations.push_back(Reservation(string(name), string(type), int(seat)));
-            }
+            // if they don't already have one, and they have enough points to pay for it, add them
 
+            if (foundFlag)
+            { // duplicate reservation
+                break;
+            }
+            else
+            {
+                cout << points_db.at(playerIndex) << endl
+                     << points_db.at(playerIndex).c_str() << endl;
+                tempPts = stoi(points_db.at(playerIndex).c_str());
+                cout << tempPts << endl;
+                cout << "enter car type: ";
+                cin >> type;
+                cout << "enter seat by cost: ";
+                cin >> seat;
+            }
+            if (tempPts >= seat) // no duplicate and enough to pay
+            {
+                cout << "reservation created for " << name << " in " << type << ", cost " << seat << " credits" << endl;
+                points_db.at(playerIndex) = to_string(tempPts - seat);                      // pay for it
+                reservations.push_back(Reservation(string(name), string(type), int(seat))); // add to list
+            }
+            else
+            {
+                cout << "Error: not enought points to create reservation." << endl;
+                cout << "You have: " << points_db.at(playerIndex) << " points." << endl;
+                break;
+            }
             break; // end of create reservation
         case 'm':
         case 'M':
@@ -136,17 +158,8 @@ int main()
         case 'd':
         case 'D':
             // delete a reservation
-            cout << "enter reservation ID to delete: ";
-            cin >> reservationID;
-            while (reservationID < 0 && reservationID > 17)
-            {
-                cout << "enter a valid ID between 0 and 17: ";
-                cin >> reservationID;
-            }
-            reservations.erase(reservations.begin() + reservationID);
-
-            cout << "reservation " << reservationID << " was deleted" << endl;
-            break; // end of delete reservation
+            deleteReservation(reservationID, reservations); // helper function at the bottom of main, could go in helpers.h or similar
+            break;                                          // end of delete reservation
         case 'p':
         case 'P':
             // print the reservations
@@ -166,4 +179,19 @@ int main()
     }
 
     return 0;
+}
+
+int deleteReservation(int &reservationID, vector<Reservation> &reservations)
+{
+    cout << "enter reservation ID to delete: ";
+    cin >> reservationID;
+    while (reservationID < 0 && reservationID > 17)
+    {
+        cout << "enter a valid ID between 0 and 17: ";
+        cin >> reservationID;
+    }
+    reservations.erase(reservations.begin() + reservationID);
+
+    cout << "reservation " << reservationID << " was deleted" << endl;
+    return 0; // maybe in error case we can return something else
 }
