@@ -1,5 +1,4 @@
-#include "Pickup.h"
-#include <vector>
+#include "VehicleTypes.h"
 
 Pickup::Pickup()
 {

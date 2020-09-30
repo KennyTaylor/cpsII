@@ -1,4 +1,4 @@
-#include "Sedan.h"
+#include "VehicleTypes.h"
 
 Sedan::Sedan()
 {

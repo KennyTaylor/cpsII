@@ -33,5 +33,5 @@ void Reservation::modify(string newCarType, string newCarName)
 //todo: Looks fine to me. If it's not exactly what he wants, we can talk to him on Wednesday, but for now, I think it's fine.
 string Reservation::print() const
 {
-    return this->name + "has a reservation in " + this->carName + " " + this->carType + ", cost " + to_string(this->credits) + " credits";
+    return this->name + " has a reservation in " + this->carName + " " + this->carType + ", cost " + to_string(this->credits) + " credits";
 }

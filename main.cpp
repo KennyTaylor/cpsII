@@ -1,8 +1,5 @@
 #include "Reservation.h"
-// #include "Vehicle.h"
-#include "Pickup.h"
-// #include "Sedan.h"
-// #include "Compact.h"
+#include "VehicleTypes.h"
 #include <vector>
 using namespace std;
 int deleteReservation(int &reservationID, vector<Reservation> &reservations); // forward declaration of helper function, can go in helpers.h
@@ -14,6 +11,7 @@ int main()
 
     Pickup car2 = Pickup("Rob's", "pickup"); // idk what name and type are, just need to be something to distinguish the cars.
     Vehicle car1 = Vehicle();
+    Compact car3 = Compact();
     // cout << car1.print() << endl;
     vector<Reservation> reservations = {testRes};
 
@@ -60,8 +58,8 @@ int main()
     bool foundFlag, noCredits;
     while (!quit)
     {
-        cout << "menu" << endl; // display all the user's options
-        cin >> selection;       // user navigates the menu with
+        cout << "make a selection: (C)reate, (M)odify, (D)elete, (P)rint, (Q)uit" << endl; // display all the user's options
+        cin >> selection;                                                                  // user navigates the menu with
         switch (selection)
         {
         case 'c':
