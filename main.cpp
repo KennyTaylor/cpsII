@@ -1,8 +1,8 @@
 #include "Reservation.h"
 // #include "Vehicle.h"
 #include "Pickup.h"
-#include "Sedan.h"
-#include "Compact.h"
+// #include "Sedan.h"
+// #include "Compact.h"
 #include <vector>
 using namespace std;
 int deleteReservation(int &reservationID, vector<Reservation> &reservations); // forward declaration of helper function, can go in helpers.h
@@ -11,7 +11,6 @@ int main()
 {
     Reservation testRes("test player", "pickup", "red");
     cout << testRes.getName() << " has a reservation in a " << testRes.getCarName() << " " << testRes.getCarType() << endl;
-
 
     Pickup car2 = Pickup("Rob's", "pickup"); // idk what name and type are, just need to be something to distinguish the cars.
     Vehicle car1 = Vehicle();
@@ -57,7 +56,7 @@ int main()
     }
     // End From today
     bool quit = false;
-    int playerIndex, tempPts;
+    int playerIndex, tempPts, resID;
     bool foundFlag, noCredits;
     while (!quit)
     {
@@ -154,8 +153,94 @@ int main()
         case 'm':
         case 'M':
             // modify a reservation
-            cout << "modify not implemented. will reuse most of create for it " << endl;
+            cout << "Modify was selected. Reservations:" << endl;
+            for (int i = 0; i < reservations.size(); i++)
+            {
+                cout << i << ": " << reservations[i].print() << endl;
+            }
+            deleteReservation(resID, reservations);
+            // modify -> create
+            getline(cin, name); // flush cin or something /////////////////////////////////////if modify isnt working test this
+            cout << "reservation deleted, enter new reservation info" << endl;
+            cout << "enter name: " << endl;
+            getline(cin, name);
+            foundFlag = false;
+            noCredits = false;
+            for (int i = 0; i < names_db.size(); i++)
+            {
+                // cout << name << names_db.at(i) << endl; // debug print
+                if (names_db.at(i) == name)
+                {
+                    cout << name << " has " << points_db.at(i) << " credits remaining." << endl;
+                    if (points_db.at(i) == "0")
+                    {
+                        noCredits = true;
+                    }
+                    playerIndex = i;
+                    foundFlag = true;
+                    break; // break the for loop, since we found the name
+                }
+            }
+            if (noCredits)
+            {
+                cout << "Error: you have no credits" << endl;
+                break;
+            }
+            if (!foundFlag)
+            {
+                cout << "Error, invalid name" << endl;
+                break; // break the switch statement
+            }
+            // TODO: question for wednesday: vector<Vehicle> can have elements of type pickup? how best to store vehicles?
+            cout << car1.print() << endl
+                 << car2.print();
+            // TODO: make the menu being printed here match the spec, making use of vehicle.print()
+            // TODO: two different ways of specifying which seat
 
+            // make sure they don't already have a reservation, then push their reservation
+            //  also make sure they have enough points for the reservation they are making
+            foundFlag = false;
+            for (int i = 0; i < reservations.size(); i++)
+            {
+                if (foundFlag)
+                {
+                    break;
+                }
+                if (reservations.at(i).getName() == name)
+                {
+                    cout << "You already have a reservation. Choose modify to change it." << endl;
+                    foundFlag = true;
+                }
+            }
+            // if they don't already have one, and they have enough points to pay for it, add them
+
+            if (foundFlag)
+            { // duplicate reservation
+                break;
+            }
+            else
+            {
+                cout << points_db.at(playerIndex) << endl
+                     << points_db.at(playerIndex).c_str() << endl;
+                tempPts = stoi(points_db.at(playerIndex).c_str());
+                cout << tempPts << endl;
+                cout << "enter car type: ";
+                cin >> type;
+                cout << "enter seat by cost: ";
+                cin >> seat;
+            }
+            if (tempPts >= seat) // no duplicate and enough to pay
+            {
+                cout << "reservation created for " << name << " in " << type << ", cost " << seat << " credits" << endl;
+                points_db.at(playerIndex) = to_string(tempPts - seat);                      // pay for it
+                reservations.push_back(Reservation(string(name), string(type), int(seat))); // add to list
+            }
+            else
+            {
+                cout << "Error: not enought points to create reservation." << endl;
+                cout << "You have: " << points_db.at(playerIndex) << " points." << endl;
+                break;
+            }
             break; // end of modify reservation
         case 'd':
         case 'D':
