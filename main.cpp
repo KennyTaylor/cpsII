@@ -103,6 +103,8 @@ int main()
             // TODO: make the menu being printed here match the spec, making use of vehicle.print()
             // TODO: two different ways of specifying which seat
 
+            // TODO: big ass if statement chain like if the user says they want a seat in a compact that costs 2 check a compact and see if it has a 2 cost seat available etc etc
+
             // make sure they don't already have a reservation, then push their reservation
             //  also make sure they have enough points for the reservation they are making
             foundFlag = false;
