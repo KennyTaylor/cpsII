@@ -755,21 +755,154 @@ int main()
             if (word == "password")
             {
                 ofile.open("all_reservations.txt");
-                ofile << pickup1.getName() << " " << pickup1.getType() << endl;
+                ofile << pickup1.getType() << " " << pickup1.getName() << endl;
                 reservationsCopy = reservations;
-                ofile << "driver: " << drivers[1] << endl;
-                for (int i = 0; i < pickup1.getSeatCosts().size() - 1; i++)
+                ofile << "driver: " << drivers[0] << endl;
+                for (int i = 1; i < pickup1.getSeatCosts().size(); i++) // {"-","5"}
                 {
                     foundFlag = false;
                     for (int resIndex = 0; resIndex < reservationsCopy.size(); resIndex++)
                     {
-                        if (reservationsCopy.at(resIndex).getCarName() == pickup1.getName() and reservationsCopy.at(resIndex).getCredits() == stoi(pickup1.getSeatCosts()[i]))
+                        cout << reservationsCopy.at(resIndex).getName() << endl;
+                        cout << reservationsCopy.at(resIndex).getCarType() << endl;
+                        cout << pickup1.getType() << endl;
+                        cout << Pickup().getSeatCosts()[i] << endl;
+                        cout << reservationsCopy.at(resIndex).getCredits() << endl;
+                        if (reservationsCopy.at(resIndex).getCarType() == (pickup1.getType() + " " + pickup1.getName()) and reservationsCopy.at(resIndex).getCredits() == stoi(Pickup().getSeatCosts()[i]) and (pickup1.getSeatCosts()[i] == "-"))
                         {
-                            ofile << reservationsCopy[resIndex].getName() << endl;
+                            ofile << reservationsCopy[resIndex].getName() << ": " << reservationsCopy[resIndex].getCredits() << endl;
                         }
                     }
 
-                    ofile << "Unassigned: " << pickup1.getSeatCosts().at(i) << endl;
+                    if (pickup1.getSeatCosts().at(i) != "-")
+                    {
+                        ofile << "Unassigned: " << pickup1.getSeatCosts().at(i) << endl;
+                    }
+                }
+                // compact1
+                ofile << compact1.getType() << " " << compact1.getName() << endl;
+                reservationsCopy = reservations;
+                ofile << "driver: " << drivers[0] << endl;
+                for (int i = 1; i < compact1.getSeatCosts().size(); i++) // {"-","5"}
+                {
+                    foundFlag = false;
+                    for (int resIndex = 0; resIndex < reservationsCopy.size(); resIndex++)
+                    {
+                        cout << reservationsCopy.at(resIndex).getName() << endl;
+                        cout << reservationsCopy.at(resIndex).getCarType() << endl;
+                        cout << compact1.getType() << endl;
+                        cout << Compact().getSeatCosts()[i] << endl;
+                        cout << reservationsCopy.at(resIndex).getCredits() << endl;
+                        if (reservationsCopy.at(resIndex).getCarType() == (compact1.getType() + " " + compact1.getName()) and reservationsCopy.at(resIndex).getCredits() == stoi(Compact().getSeatCosts()[i]) and (compact1.getSeatCosts()[i] == "-"))
+                        {
+                            ofile << reservationsCopy[resIndex].getName() << ": " << reservationsCopy[resIndex].getCredits() << endl;
+                        }
+                    }
+
+                    if (compact1.getSeatCosts().at(i) != "-")
+                    {
+                        ofile << "Unassigned: " << compact1.getSeatCosts().at(i) << endl;
+                    }
+                }
+                // compact2
+                ofile << compact2.getType() << " " << compact2.getName() << endl;
+                reservationsCopy = reservations;
+                ofile << "driver: " << drivers[0] << endl;
+                for (int i = 1; i < compact2.getSeatCosts().size(); i++) // {"-","5"}
+                {
+                    foundFlag = false;
+                    for (int resIndex = 0; resIndex < reservationsCopy.size(); resIndex++)
+                    {
+                        cout << reservationsCopy.at(resIndex).getName() << endl;
+                        cout << reservationsCopy.at(resIndex).getCarType() << endl;
+                        cout << compact2.getType() << endl;
+                        cout << Compact().getSeatCosts()[i] << endl;
+                        cout << reservationsCopy.at(resIndex).getCredits() << endl;
+                        if (reservationsCopy.at(resIndex).getCarType() == (compact2.getType() + " " + compact2.getName()) and reservationsCopy.at(resIndex).getCredits() == stoi(Compact().getSeatCosts()[i]) and (compact2.getSeatCosts()[i] == "-"))
+                        {
+                            ofile << reservationsCopy[resIndex].getName() << ": " << reservationsCopy[resIndex].getCredits() << endl;
+                        }
+                    }
+
+                    if (compact2.getSeatCosts().at(i) != "-")
+                    {
+                        ofile << "Unassigned: " << compact2.getSeatCosts().at(i) << endl;
+                    }
+                }
+                // compact3
+                ofile << compact3.getType() << " " << compact3.getName() << endl;
+                reservationsCopy = reservations;
+                ofile << "driver: " << drivers[0] << endl;
+                for (int i = 1; i < compact3.getSeatCosts().size(); i++) // {"-","5"}
+                {
+                    foundFlag = false;
+                    for (int resIndex = 0; resIndex < reservationsCopy.size(); resIndex++)
+                    {
+                        cout << reservationsCopy.at(resIndex).getName() << endl;
+                        cout << reservationsCopy.at(resIndex).getCarType() << endl;
+                        cout << compact3.getType() << endl;
+                        cout << Compact().getSeatCosts()[i] << endl;
+                        cout << reservationsCopy.at(resIndex).getCredits() << endl;
+                        if (reservationsCopy.at(resIndex).getCarType() == (compact3.getType() + " " + compact3.getName()) and reservationsCopy.at(resIndex).getCredits() == stoi(Compact().getSeatCosts()[i]) and (compact3.getSeatCosts()[i] == "-"))
+                        {
+                            ofile << reservationsCopy[resIndex].getName() << ": " << reservationsCopy[resIndex].getCredits() << endl;
+                        }
+                    }
+
+                    if (compact3.getSeatCosts().at(i) != "-")
+                    {
+                        ofile << "Unassigned: " << compact3.getSeatCosts().at(i) << endl;
+                    }
+                }
+                // sedan1
+                ofile << sedan1.getType() << " " << sedan1.getName() << endl;
+                reservationsCopy = reservations;
+                ofile << "driver: " << drivers[0] << endl;
+                for (int i = 1; i < sedan1.getSeatCosts().size(); i++) // {"-","5"}
+                {
+                    foundFlag = false;
+                    for (int resIndex = 0; resIndex < reservationsCopy.size(); resIndex++)
+                    {
+                        cout << reservationsCopy.at(resIndex).getName() << endl;
+                        cout << reservationsCopy.at(resIndex).getCarType() << endl;
+                        cout << sedan1.getType() << endl;
+                        cout << Sedan().getSeatCosts()[i] << endl;
+                        cout << reservationsCopy.at(resIndex).getCredits() << endl;
+                        if (reservationsCopy.at(resIndex).getCarType() == (sedan1.getType() + " " + sedan1.getName()) and reservationsCopy.at(resIndex).getCredits() == stoi(Sedan().getSeatCosts()[i]) and (sedan1.getSeatCosts()[i] == "-"))
+                        {
+                            ofile << reservationsCopy[resIndex].getName() << ": " << reservationsCopy[resIndex].getCredits() << endl;
+                        }
+                    }
+
+                    if (sedan1.getSeatCosts().at(i) != "-")
+                    {
+                        ofile << "Unassigned: " << sedan1.getSeatCosts().at(i) << endl;
+                    }
+                }
+                // sedan2
+                ofile << sedan2.getType() << " " << sedan2.getName() << endl;
+                reservationsCopy = reservations;
+                ofile << "driver: " << drivers[0] << endl;
+                for (int i = 1; i < sedan2.getSeatCosts().size(); i++) // {"-","5"}
+                {
+                    foundFlag = false;
+                    for (int resIndex = 0; resIndex < reservationsCopy.size(); resIndex++)
+                    {
+                        cout << reservationsCopy.at(resIndex).getName() << endl;
+                        cout << reservationsCopy.at(resIndex).getCarType() << endl;
+                        cout << sedan2.getType() << endl;
+                        cout << Sedan().getSeatCosts()[i] << endl;
+                        cout << reservationsCopy.at(resIndex).getCredits() << endl;
+                        if (reservationsCopy.at(resIndex).getCarType() == (sedan2.getType() + " " + sedan2.getName()) and reservationsCopy.at(resIndex).getCredits() == stoi(Sedan().getSeatCosts()[i]) and (sedan2.getSeatCosts()[i] == "-"))
+                        {
+                            ofile << reservationsCopy[resIndex].getName() << ": " << reservationsCopy[resIndex].getCredits() << endl;
+                        }
+                    }
+
+                    if (sedan2.getSeatCosts().at(i) != "-")
+                    {
+                        ofile << "Unassigned: " << sedan2.getSeatCosts().at(i) << endl;
+                    }
                 }
                 // pickup1.print() << endl
                 //  << compact1.print() << endl
@@ -777,16 +910,12 @@ int main()
                 //  << compact3.print() << endl
                 //  << sedan1.print() << endl
                 //  << sedan2
-                for (int i = 0; i < reservations.size(); i++)
-                {
-
-                    ofile << reservations[i].print() << endl;
-                }
             }
             else
             {
                 cout << "incorrect password" << endl;
             }
+            ofile.close();
             break;
         case 'q':
         case 'Q':
@@ -867,7 +996,7 @@ vector<string> takeSeatIfFree(vector<string> seatCosts, string seat)
         }
     }
     if (!seatFlag)
-    {
+    { // verify the seat was assigned successfully, this check was moved outside the function
     }
     return seatCosts;
 }
