@@ -34,5 +34,9 @@ string Vehicle::print() const
             temp += "\n";
         }
     }
-    return this->name + " " + this->type + "\n" + temp;
+    return this->name + "'s " + this->type + " Vehicle\n" + temp + "\n";
+}
+void Vehicle::setSeatCosts(vector<string> seatCosts)
+{
+    this->seatCosts = seatCosts;
 }

@@ -22,6 +22,10 @@ public:
     {
         return this->carType;
     }
+    int getCredits()
+    {
+        return this->credits;
+    }
     string getCarName()
     {
         return this->carName;

@@ -17,5 +17,6 @@ public:
     string getName();
     string getType();
     vector<string> getSeatCosts();
+    void setSeatCosts(vector<string> seatCosts);
     string print() const;
 };

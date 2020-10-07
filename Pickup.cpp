@@ -3,8 +3,8 @@
 Pickup::Pickup()
 {
     this->seatCosts = {"-", "5"};
-    this->name = "pickup";
-    this->type = "owner's";
+    this->name = "owner";
+    this->type = "color";
 }
 
 Pickup::Pickup(string name, string type)
