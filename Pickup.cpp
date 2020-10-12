@@ -1,3 +1,4 @@
+// Ken Taylor, CPET and Ben Brache, CRIM
 #include "VehicleTypes.h"
 
 Pickup::Pickup()
@@ -7,9 +8,9 @@ Pickup::Pickup()
     this->type = "color";
 }
 
-Pickup::Pickup(string name, string type)
+Pickup::Pickup(string type)
 {
     this->seatCosts = {"-", "5"};
-    this->name = name;
+    this->name = "Pickup";
     this->type = type;
 }

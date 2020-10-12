@@ -1,13 +1,14 @@
+// Ken Taylor, CPET and Ben Brache, CRIM
 #include "Vehicle.h"
 
 Vehicle::Vehicle()
 {
-    this->name = "name's";
+    this->name = "Vehicle";
     this->type = "vehicle";
 }
-Vehicle::Vehicle(string name, string type)
+Vehicle::Vehicle(string type)
 {
-    this->name = name;
+    this->name = "Vehicle";
     this->type = type;
 }
 string Vehicle::getName()
@@ -22,10 +23,14 @@ vector<string> Vehicle::getSeatCosts()
 {
     return this->seatCosts;
 }
+
+// example output:
+// Red Pickup
+// (-)(5)
+//
 string Vehicle::print() const
 {
     string temp = "";
-    // string temp = "(-) (" + this->seatCosts.at(0) + ")\n";
     for (int i = 0; i < this->seatCosts.size(); i++)
     {
         temp += "(" + this->seatCosts.at(i) + ")";
@@ -34,7 +39,7 @@ string Vehicle::print() const
             temp += "\n";
         }
     }
-    return this->name + "'s " + this->type + " Vehicle\n" + temp + "\n";
+    return this->type + " " + this->name + "\n" + temp + "\n";
 }
 void Vehicle::setSeatCosts(vector<string> seatCosts)
 {

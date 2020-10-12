@@ -1,21 +1,23 @@
+// Ken Taylor, CPET and Ben Brache, CRIM
 #include "Vehicle.h"
-
 using namespace std;
 class Pickup : public Vehicle
 {
 public:
     Pickup();
-    Pickup(string name, string type);
+    Pickup(string type);
 };
+
 class Sedan : public Vehicle
 {
 public:
     Sedan();
-    Sedan(string name, string type);
+    Sedan(string type);
 };
+
 class Compact : public Vehicle
 {
 public:
     Compact();
-    Compact(string name, string type);
+    Compact(string type);
 };
